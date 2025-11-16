@@ -72,7 +72,10 @@ int main(){
                 getchar();
                 system("cls");
                 break;
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
                 
             case 3: 
                 printf("\nQual o valor a ser aplicado na poupanca?\nR$"); 
