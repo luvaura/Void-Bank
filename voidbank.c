@@ -16,12 +16,12 @@ int main(){
         printf("-+-+-+-+-VOID BANK-+-+-+-+-\n\n");
         printf("Seja bem-vindo(a)! Escolha entre as opcoes:\n");
         printf("1. Depositar (conta corrente)\n");
-        printf("2. Sacar (sem cheque especial)\n");
+        printf("2. Sacar\n");
         printf("3. Aplicar na poupanca\n");
         printf("4. Resgatar da poupanca\n");
-        printf("5. Fazer PIX (registrar conta/chave de destino)\n");
+        printf("5. Fazer PIX\n");
         printf("6. Consultar saldos\n");
-        printf("7. Extrato (listar transacoes com data/hora)\n");
+        printf("7. Extrato\n");
         printf("8. Sair\n\n");
         
         scanf(" %d", &opcao);
@@ -123,7 +123,7 @@ int main(){
                 break;
                 
             case 5: // Fazer o Pix
-                printf("\nQual o valor da transferencia pix?\n R$");
+                printf("\nQual o valor da transferencia pix?\nR$");
                 scanf(" %lf", &valor_em_reais);
                 char chave[20];
                 printf("\nQual a chave pix?\n");
