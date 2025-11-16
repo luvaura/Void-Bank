@@ -72,7 +72,10 @@ int main(){
                 getchar();
                 system("cls");
                 break;
+<<<<<<< Updated upstream
             
+=======
+>>>>>>> Stashed changes
                 
             case 3: // Aplicar poupanca
                 printf("\nQual o valor a ser aplicado na poupanca?\nR$"); 
@@ -98,7 +101,7 @@ int main(){
                 system("cls");
                 break;
                 
-            case 4: // Resgatar poupanca
+            case 4: 
                 printf("\nQual o valor a ser rasgatado na poupanca?\n R$");
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
@@ -120,9 +123,9 @@ int main(){
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
-                break;
+                break; // Resgatar poupanca
                 
-            case 5: // Fazer o Pix
+            case 5: 
                 printf("\nQual o valor da transferencia pix?\n R$");
                 scanf(" %lf", &valor_em_reais);
                 char chave[20];
@@ -147,24 +150,24 @@ int main(){
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
-                break;
+                break; // Fazer o Pix
 
-            case 6: // Consultar saldo
+            case 6: 
                 printf("\nSaldo corrente: R$%.2f\n", saldo_corrente() / 100.0 );
                 printf("Saldo poupanca: R$%.2f\n", saldo_poupanca() / 100.0 );
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
-                break;
+                break; // Consultar saldo
 
-            case 7: // Extrato
+            case 7: 
                 extrato_imprimir();
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
-                break;
+                break; // Extrato
 
             case 8: // Sair
                 break;
