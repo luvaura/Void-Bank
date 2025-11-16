@@ -35,6 +35,8 @@ int main(){
                 int status = depositar(valor_em_centavos);
                 if (status == ERRO_CAPACIDADE_LOG){
                     printf("Limite de transacoes atingido. \n");
+                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
+                    printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
                 } else if (status == OK){
                     printf("Deposito de R$%.2f realizado com sucesso!\n", valor_em_reais);
@@ -48,7 +50,7 @@ int main(){
                 break;
 
                 
-            case 2: // Saque
+            case 2: 
                 printf("\nQual o valor do saque?\nR$");
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
@@ -57,6 +59,8 @@ int main(){
                     printf("Saldo indisponivel.\n"); 
                 } else if (status == ERRO_CAPACIDADE_LOG){
                     printf("Limite de transacoes atingido. \n");
+                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
+                    printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
                 } else if (status == OK){
                     printf("Saque de R$%.2f realizado com sucesso!\n", valor_em_reais);
@@ -79,6 +83,8 @@ int main(){
                     printf("Saldo indisponivel.\n"); 
                 } else if (status == ERRO_CAPACIDADE_LOG){
                     printf("Limite de transacoes atingido. \n");
+                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
+                    printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
 
                 } else if (status == OK){
@@ -101,6 +107,8 @@ int main(){
                     printf("Saldo indisponivel.\n"); 
                 } else if (status == ERRO_CAPACIDADE_LOG){
                     printf("Limite de transacoes atingido. \n");
+                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
+                    printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
 
                 } else if (status == OK){
@@ -126,6 +134,8 @@ int main(){
                     printf("Saldo indisponivel.\n"); 
                 } else if (status == ERRO_CAPACIDADE_LOG){
                     printf("Limite de transacoes atingido. \n");
+                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
+                    printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
 
                 } else if (status == OK){
