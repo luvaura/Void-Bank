@@ -27,6 +27,7 @@ int main(){
         scanf(" %d", &opcao);
 
         switch (opcao){
+                // Deposito
             case 1:
                 
                 printf("\nQual o valor do deposito?\nR$");
@@ -36,7 +37,8 @@ int main(){
                 depositar(valor_em_centavos);
                 system("cls");
                 break;
-                
+
+                // Saque
             case 2:
                 printf("\nQual o valor do saque?\nR$");
                 scanf(" %lf", &valor_em_reais);
@@ -46,15 +48,28 @@ int main(){
                 }
                 if (valor_em_centavos <= saldo_corrente()){
                     sacar(valor_em_centavos);
-                }
-                
+                }                
                 break;
+            
+                // Aplicar poupanca
             case 3:
+                printf("\nQual o valor a ser aplicado na poupanca?\nR$"); 
+                scanf(" %lf", &valor_em_reais);
+                valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
+
+                 
+
                 break;
+
+                // Resgatar poupanca
             case 4:
                 break;
+
+                // Fazer o Pix
             case 5:
                 break;
+            
+                // Consultar saldo
             case 6:
                 printf("\nSaldo corrente: R$%.2f\n", saldo_corrente() / 100.0 );
                 printf("Saldo poupanca: R$%.2f\n", saldo_poupanca() / 100.0 );

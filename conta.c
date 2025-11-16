@@ -38,15 +38,16 @@ int sacar(long long valor){
     usuario.nlog ++;
 }
 
-int  aplicar_poupanca(long long valor){
+int aplicar_poupanca(long long valor){
+    usuario.saldo_corrente -= valor;
+    usuario.saldo_poupanca += valor;
+} // passar dinheiro da conta para a poupanca
 
-} // passar dinheiro da conta para a poupança
+int resgatar_poupanca(long long valor){
 
-int  resgatar_poupanca(long long valor){
+} //passar dinheiro da poupanca para a conta
 
-} //passar dinheiro da poupança para a conta
-
-int  fazer_pix(const char destino[], long long valor){
+int fazer_pix(const char destino[], long long valor){
 
 } //tirar dinheiro da conta e transferir para a chave pix
 
