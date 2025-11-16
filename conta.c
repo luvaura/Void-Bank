@@ -19,6 +19,13 @@ void conta_init(void){
 }
 
 int depositar(long long valor){
+    if (valor <= 0){
+        return ERRO_VALOR_INVALIDO;
+    }
+
+    if (usuario.nlog >= MAX_TRANS){
+        return ERRO_CAPACIDADE_LOG;
+    }
     usuario.saldo_corrente += valor;
     usuario.log[usuario.nlog].tipo = DEP;
     usuario.log[usuario.nlog].valor = valor;
@@ -29,6 +36,18 @@ int depositar(long long valor){
 }
 
 int sacar(long long valor){
+    if (valor <= 0){
+        return ERRO_VALOR_INVALIDO;
+    }
+
+    if (valor > usuario.saldo_corrente){
+        return ERRO_SALDO_INSUFICIENTE;
+    }
+
+    if (usuario.nlog >= MAX_TRANS){
+        return ERRO_CAPACIDADE_LOG;
+    }
+
     usuario.saldo_corrente -= valor;
     usuario.log[usuario.nlog].tipo = SAQ;
     usuario.log[usuario.nlog].valor = valor;
@@ -36,19 +55,78 @@ int sacar(long long valor){
     usuario.log[usuario.nlog].saldo_poupanca_apos = usuario.saldo_poupanca;
     data_horario(usuario.log[usuario.nlog].quando, 20);
     usuario.nlog ++;
+
+    return OK;
 }
 
 int aplicar_poupanca(long long valor){
+    if (valor <= 0){
+        return ERRO_VALOR_INVALIDO;
+    }
+
+    if (valor > usuario.saldo_corrente){
+        return ERRO_SALDO_INSUFICIENTE;
+    }
+
+    if (usuario.nlog >= MAX_TRANS){
+        return ERRO_CAPACIDADE_LOG;
+    }
     usuario.saldo_corrente -= valor;
     usuario.saldo_poupanca += valor;
+    usuario.log[usuario.nlog].tipo = APLI;
+    usuario.log[usuario.nlog].valor = valor;
+    usuario.log[usuario.nlog].saldo_corrente_apos = usuario.saldo_corrente;
+    usuario.log[usuario.nlog].saldo_poupanca_apos = usuario.saldo_poupanca;
+    data_horario(usuario.log[usuario.nlog].quando, 20);
+    usuario.nlog ++;
+
+    return OK;
 } // passar dinheiro da conta para a poupanca
 
 int resgatar_poupanca(long long valor){
+    if (valor <= 0){
+        return ERRO_VALOR_INVALIDO;
+    }
 
+    if (valor > usuario.saldo_poupanca){
+        return ERRO_SALDO_INSUFICIENTE;
+    }
+
+    if (usuario.nlog >= MAX_TRANS){
+        return ERRO_CAPACIDADE_LOG;
+    }
+    usuario.saldo_corrente += valor;
+    usuario.saldo_poupanca -= valor;
+    usuario.log[usuario.nlog].tipo = RESG;
+    usuario.log[usuario.nlog].valor = valor;
+    usuario.log[usuario.nlog].saldo_corrente_apos = usuario.saldo_corrente;
+    usuario.log[usuario.nlog].saldo_poupanca_apos = usuario.saldo_poupanca;
+    data_horario(usuario.log[usuario.nlog].quando, 20);
+    usuario.nlog ++;
+    return OK;
 } //passar dinheiro da poupanca para a conta
 
 int fazer_pix(const char destino[], long long valor){
+    if (valor <= 0){
+        return ERRO_VALOR_INVALIDO;
+    }
 
+    if (valor > usuario.saldo_corrente){
+        return ERRO_SALDO_INSUFICIENTE;
+    }
+
+    if (usuario.nlog >= MAX_TRANS){
+        return ERRO_CAPACIDADE_LOG;
+    }
+    usuario.saldo_corrente -= valor;
+    usuario.log[usuario.nlog].tipo = PIX;
+    usuario.log[usuario.nlog].valor = valor;
+    usuario.log[usuario.nlog].saldo_corrente_apos = usuario.saldo_corrente;
+    usuario.log[usuario.nlog].saldo_poupanca_apos = usuario.saldo_poupanca;
+    strcpy(usuario.log[usuario.nlog].destino, destino);
+    data_horario(usuario.log[usuario.nlog].quando, 20);
+    usuario.nlog ++;
+    return OK;
 } //tirar dinheiro da conta e transferir para a chave pix
 
 void render_poupanca(double rendimento_mensal){

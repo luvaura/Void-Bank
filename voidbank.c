@@ -27,50 +27,119 @@ int main(){
         scanf(" %d", &opcao);
 
         switch (opcao){
-                // Deposito
-            case 1:
                 
+            case 1: // Deposito
                 printf("\nQual o valor do deposito?\nR$");
                 scanf(" %lf", &valor_em_reais);
-
                 valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
-                depositar(valor_em_centavos);
+                int status = depositar(valor_em_centavos);
+                if (status == ERRO_CAPACIDADE_LOG){
+                    printf("Limite de transacoes atingido. \n");
+                    return 0;
+                } else if (status == OK){
+                    printf("Deposito de R$%.2f realizado com sucesso!\n", valor_em_reais);
+                } else if (status == ERRO_VALOR_INVALIDO){
+                    printf("Valor invalido para deposito.\n");
+                }
+                printf("\nPressione ENTER para voltar ao menu.");
+                while (getchar() != '\n');
+                getchar();
                 system("cls");
                 break;
 
-                // Saque
-            case 2:
+                
+            case 2: // Saque
                 printf("\nQual o valor do saque?\nR$");
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
-                if (valor_em_centavos > saldo_corrente()){
+                status = sacar(valor_em_centavos);
+                if (status == ERRO_SALDO_INSUFICIENTE){
                     printf("Saldo indisponivel.\n"); 
+                } else if (status == ERRO_CAPACIDADE_LOG){
+                    printf("Limite de transacoes atingido. \n");
+                    return 0;
+                } else if (status == OK){
+                    printf("Saque de R$%.2f realizado com sucesso!\n", valor_em_reais);
+                } else if (status == ERRO_VALOR_INVALIDO){
+                    printf("Valor invalido para saque.\n");
                 }
-                if (valor_em_centavos <= saldo_corrente()){
-                    sacar(valor_em_centavos);
-                }                
+                printf("\nPressione ENTER para voltar ao menu.");
+                while (getchar() != '\n');
+                getchar();
+                system("cls");
                 break;
             
-                // Aplicar poupanca
-            case 3:
+                
+            case 3: // Aplicar poupanca
                 printf("\nQual o valor a ser aplicado na poupanca?\nR$"); 
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
+                status = aplicar_poupanca(valor_em_centavos);
+                if (status == ERRO_SALDO_INSUFICIENTE){
+                    printf("Saldo indisponivel.\n"); 
+                } else if (status == ERRO_CAPACIDADE_LOG){
+                    printf("Limite de transacoes atingido. \n");
+                    return 0;
 
-                 
+                } else if (status == OK){
+                    printf("Aplique de R$%.2f realizado com sucesso!\n", valor_em_reais);
+                } else if (status == ERRO_VALOR_INVALIDO){
+                    printf("Valor invalido para aplicacao.\n");
+                }
+                printf("\nPressione ENTER para voltar ao menu.");
+                while (getchar() != '\n');
+                getchar();
+                system("cls");
+                break;
+                
+            case 4: // Resgatar poupanca
+                printf("\nQual o valor a ser rasgatado na poupanca?\n R$");
+                scanf(" %lf", &valor_em_reais);
+                valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
+                status = resgatar_poupanca(valor_em_centavos);
+                if (status == ERRO_SALDO_INSUFICIENTE){
+                    printf("Saldo indisponivel.\n"); 
+                } else if (status == ERRO_CAPACIDADE_LOG){
+                    printf("Limite de transacoes atingido. \n");
+                    return 0;
 
+                } else if (status == OK){
+                    printf("Resgate de R$%.2f realizado com sucesso!\n", valor_em_reais);
+                } else if (status == ERRO_VALOR_INVALIDO){
+                    printf("Valor invalido para resgate.\n");
+                }
+                printf("\nPressione ENTER para voltar ao menu.");
+                while (getchar() != '\n');
+                getchar();
+                system("cls");
+                break;
+                
+            case 5: // Fazer o Pix
+                printf("\nQual o valor da transferencia pix?\n R$");
+                scanf(" %lf", &valor_em_reais);
+                char chave[20];
+                printf("\nQual a chave pix?\n");
+                scanf(" %s", chave);
+                valor_em_centavos = (long long)(valor_em_reais * 100 + 0.5);
+                status = fazer_pix(chave, valor_em_centavos);
+                if (status == ERRO_SALDO_INSUFICIENTE){
+                    printf("Saldo indisponivel.\n"); 
+                } else if (status == ERRO_CAPACIDADE_LOG){
+                    printf("Limite de transacoes atingido. \n");
+                    return 0;
+
+                } else if (status == OK){
+                    printf("Pix de R$%.2f realizado com sucesso!\n", valor_em_reais);
+                } else if (status == ERRO_VALOR_INVALIDO){
+                    printf("Valor invalido para pix.\n");
+                }
+                printf("\nPressione ENTER para voltar ao menu.");
+                while (getchar() != '\n');
+                getchar();
+                system("cls");
                 break;
 
-                // Resgatar poupanca
-            case 4:
-                break;
-
-                // Fazer o Pix
-            case 5:
-                break;
-            
-                // Consultar saldo
-            case 6:
+            case 6: // Consultar saldo
                 printf("\nSaldo corrente: R$%.2f\n", saldo_corrente() / 100.0 );
                 printf("Saldo poupanca: R$%.2f\n", saldo_poupanca() / 100.0 );
                 printf("\nPressione ENTER para voltar ao menu.");
@@ -78,14 +147,16 @@ int main(){
                 getchar();
                 system("cls");
                 break;
-            case 7:
+
+            case 7: // Extrato
                 extrato_imprimir();
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
                 break;
-            case 8:
+
+            case 8: // Sair
                 break;
         }
 
