@@ -134,7 +134,7 @@ void render_poupanca(double rendimento_mensal){
 } //colocar na conta o rendimento mensal da poupança
 
 int receber_pix(long long valor){
-
+    
 } //creditar um pix recebido na conta
 
 long long saldo_corrente(void){
