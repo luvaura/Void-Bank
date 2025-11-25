@@ -1,6 +1,6 @@
 # (Void)Bank
 
-VoidBank é um simulador de conta bancária com interface textual, desenvolvido como parte do Trabalho de Implementação da disciplina de Programação 1 (Prog1) do Instituto de Computação da UFRJ. O projeto consolida conceitos de modularização , funções, vetores e structs :D
+VoidBank é um simulador de conta bancária com interface textual, desenvolvido como parte do Trabalho de Implementação da disciplina de Programação 1 (Prog1) do Instituto de Computação da UFRJ. O projeto consolida conceitos de modularização, funções, vetores e structs :D
 
 ### **O simulador oferece as seguintes operações no menu :**
 
