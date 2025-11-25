@@ -170,47 +170,6 @@ int main(){
             case 8: // Sair
                 break;
 
-            case 9: // SIMULACAO: fechar o mes
-                printf("\nSimulando fechamento do mes (Rendimento de 0.5%%)\n");
-                double taxa_de_rendimento = 0.005;
-                long long saldo_antes = saldo_poupanca();
-
-                if (saldo_antes > 0){
-                    render_poupanca(taxa_de_rendimento);
-                    long long saldo_depois = saldo_poupanca();
-                    if (saldo_depois > saldo_antes){
-                        double rendimento_em_reais = (saldo_depois - saldo_antes) / 100.0;
-                        printf("Rendimento de R$%.2f creditado na poupanca!\n",rendimento_em_reais);
-
-                    } else {
-                        printf("Nenhum rendimento aplicado.\n");
-                    }
-                } else {
-                    printf("Sem saldo na poupanca para render.\n");
-                }
-                printf("\nPressione ENTER para voltar ao menu.");
-                while (getchar() != '\n');
-                getchar();
-                system("cls");
-                break;
-            case 10: // SIMULACAO: Receber um pix
-                printf("\nRecebendo pix de R$12.34\n");
-                long long valor_pix_recebido = 1234;
-
-                status = receber_pix(valor_pix_recebido);
-                if (status == OK){
-                    printf("Pix de R$%.2f recebido!", valor_pix_recebido / 100.0);
-                } else if (status == ERRO_CAPACIDADE_LOG) {
-                    printf("Limite de transacoes atingido. \n");
-                    printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
-                    printf("O serviço do VoidBank sairá do ar agora.\n");
-                    return 0;
-                }
-                printf("\nPressione ENTER para voltar ao menu.");
-                while (getchar() != '\n');
-                getchar();
-                system("cls");
-                break;
 
             default:
                 printf("\nOpcao invalida! Tente novamente.\n");
