@@ -8,8 +8,8 @@ typedef enum { DEP, SAQ, APLI, RESG, PIX, REND, PIXR } TipoTransacao;
 typedef struct {
     TipoTransacao tipo;
     long long valor;
-	long long saldo_corrente_apos;
-	long long saldo_poupanca_apos;
+    long long saldo_corrente_apos;
+    long long saldo_poupanca_apos;
     char destino[128];
     char quando[20];
 } Transacao;
@@ -28,19 +28,16 @@ enum {
     ERRO_CAPACIDADE_LOG = 3
 };
 
-void conta_init(void); //inicializar a conta logo no início da aplicação. 
+extern Conta minha_conta;
 
-int  depositar(long long valor); //depositar na conta
-int  sacar(long long valor); //sacar da conta
-int  aplicar_poupanca(long long valor); // passar dinheiro da conta para a poupança
-int  resgatar_poupanca(long long valor); //passar dinheiro da poupança para a conta
-int  fazer_pix(const char destino[], long long valor); //tirar dinheiro da conta e transferir para a chave pix
-// void render_poupanca(double rendimento_mensal); //colocar na conta o rendimento mensal da poupança
-// int  receber_pix(long long valor); //creditar um pix recebido na conta
-
-long long saldo_corrente(void); //retorna o valor do saldo
-long long saldo_poupanca(void); //retorna o valor da poupança
-
-void extrato_imprimir(void); //imprime as transações realizadas e o saldo final.
+void conta_init(void);
+int  depositar(long long valor);
+int  sacar(long long valor);
+int  aplicar_poupanca(long long valor);
+int  resgatar_poupanca(long long valor);
+int  fazer_pix(const char destino[], long long valor);
+long long saldo_corrente(void);
+long long saldo_poupanca(void);
+void extrato_imprimir(void);
 
 #endif // CONTA_H
