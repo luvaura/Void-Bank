@@ -44,6 +44,8 @@ int main(){
                     printf("Deposito de R$%.2f realizado com sucesso!\n", valor_em_reais);
                 } else if (status == ERRO_VALOR_INVALIDO){
                     printf("Valor invalido para deposito.\n");
+                } else {
+                    printf("Erro na transacao.\n");
                 }
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
@@ -51,8 +53,7 @@ int main(){
                 system("cls");
                 break;
 
-                
-            case 2: 
+            case 2: // Saque
                 printf("\nQual o valor do saque?\nR$");
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)round(valor_em_reais * 100);
@@ -68,6 +69,8 @@ int main(){
                     printf("Saque de R$%.2f realizado com sucesso!\n", valor_em_reais);
                 } else if (status == ERRO_VALOR_INVALIDO){
                     printf("Valor invalido para saque.\n");
+                } else {
+                    printf("Erro na transacao.\n");
                 }
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
@@ -75,7 +78,7 @@ int main(){
                 system("cls");
                 break;
                 
-            case 3: 
+            case 3: // Aplicar poupanca
                 printf("\nQual o valor a ser aplicado na poupanca?\nR$"); 
                 scanf(" %lf", &valor_em_reais);
                 valor_em_centavos = (long long)round(valor_em_reais * 100);
@@ -87,18 +90,19 @@ int main(){
                     printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
                     printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
-
                 } else if (status == OK){
                     printf("Aplique de R$%.2f realizado com sucesso!\n", valor_em_reais);
                 } else if (status == ERRO_VALOR_INVALIDO){
                     printf("Valor invalido para aplicacao.\n");
+                } else {
+                    printf("Erro na transacao.\n");
                 }
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
-                break; // Aplicar poupanca
-                
+                break;
+
             case 4: // Resgatar poupanca
                 printf("\nQual o valor a ser rasgatado na poupanca?\n R$");
                 scanf(" %lf", &valor_em_reais);
@@ -111,11 +115,12 @@ int main(){
                     printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
                     printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
-
                 } else if (status == OK){
                     printf("Resgate de R$%.2f realizado com sucesso!\n", valor_em_reais);
                 } else if (status == ERRO_VALOR_INVALIDO){
                     printf("Valor invalido para resgate.\n");
+                } else {
+                    printf("Erro na transacao.\n");
                 }
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
@@ -123,12 +128,13 @@ int main(){
                 system("cls");
                 break;
                 
-            case 5: // Fazer o Pix
+            case 5: // Fazer Pix
+            {
+                char chave[20];
                 printf("\nQual o valor da transferencia pix?\nR$");
                 scanf(" %lf", &valor_em_reais);
-                char chave[20];
                 printf("\nQual a chave pix?\n");
-                scanf(" %s", chave);
+                scanf("%19s", chave);
                 valor_em_centavos = (long long)round(valor_em_reais * 100);
                 status = fazer_pix(chave, valor_em_centavos);
                 if (status == ERRO_SALDO_INSUFICIENTE){
@@ -138,16 +144,18 @@ int main(){
                     printf("[ALERTA] Capacidade de registros atingida (100 transações).\n");
                     printf("O serviço do VoidBank sairá do ar agora.\n");
                     return 0;
-
                 } else if (status == OK){
                     printf("Pix de R$%.2f realizado com sucesso!\n", valor_em_reais);
                 } else if (status == ERRO_VALOR_INVALIDO){
                     printf("Valor invalido para pix.\n");
+                } else {
+                    printf("Erro na transacao.\n");
                 }
                 printf("\nPressione ENTER para voltar ao menu.");
                 while (getchar() != '\n');
                 getchar();
                 system("cls");
+            }
                 break;
 
             case 6: // Consultar saldo
@@ -169,7 +177,6 @@ int main(){
 
             case 8: // Sair
                 break;
-
 
             default:
                 printf("\nOpcao invalida! Tente novamente.\n");

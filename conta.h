@@ -35,8 +35,8 @@ int  sacar(long long valor); //sacar da conta
 int  aplicar_poupanca(long long valor); // passar dinheiro da conta para a poupança
 int  resgatar_poupanca(long long valor); //passar dinheiro da poupança para a conta
 int  fazer_pix(const char destino[], long long valor); //tirar dinheiro da conta e transferir para a chave pix
-void render_poupanca(double rendimento_mensal); //colocar na conta o rendimento mensal da poupança
-int  receber_pix(long long valor); //creditar um pix recebido na conta
+// void render_poupanca(double rendimento_mensal); //colocar na conta o rendimento mensal da poupança
+// int  receber_pix(long long valor); //creditar um pix recebido na conta
 
 long long saldo_corrente(void); //retorna o valor do saldo
 long long saldo_poupanca(void); //retorna o valor da poupança

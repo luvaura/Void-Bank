@@ -125,7 +125,8 @@ int fazer_pix(const char destino[], long long valor){
     usuario.log[usuario.nlog].valor = valor;
     usuario.log[usuario.nlog].saldo_corrente_apos = usuario.saldo_corrente;
     usuario.log[usuario.nlog].saldo_poupanca_apos = usuario.saldo_poupanca;
-    strcpy(usuario.log[usuario.nlog].destino, destino);
+    strncpy(usuario.log[usuario.nlog].destino, destino, 127);
+    usuario.log[usuario.nlog].destino[127] = '\0';
     data_horario(usuario.log[usuario.nlog].quando, 20);
     usuario.nlog ++;
     return OK;
